@@ -1,8 +1,6 @@
 "use client"
 
 import { HeaderMain } from "@/components/header-main"
-import { Button } from "@/components/ui/button"
-import NextLink from "next/link"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,12 +9,15 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { SlashIcon } from "lucide-react"
 import useDict from "@/hooks/useDict"
+import { SlashIcon } from "lucide-react"
 
-const Cars = () => {
+type Props = {
+  params: { name: string }
+}
+
+const CarsDetail = ({ params }: Props) => {
   const { dict } = useDict()
-
   return (
     <>
       <HeaderMain>
@@ -31,20 +32,22 @@ const Cars = () => {
               <SlashIcon />
             </BreadcrumbSeparator>
             <BreadcrumbItem>
-              <BreadcrumbPage>{dict?.menu?.cars.toUpperCase()}</BreadcrumbPage>
+              <BreadcrumbLink href="/cars">
+                {dict?.menu?.cars.toUpperCase()}
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator>
+              <SlashIcon />
+            </BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbPage>{params.name}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
       </HeaderMain>
-      <div className="flex container flex-col items-center justify-between p-24">
-        <Button color="primary" size="sm">
-          <NextLink href={`/cars/beetle`} className="text-ds-primary-active">
-            beetle
-          </NextLink>
-        </Button>
-      </div>
+      {params.name}
     </>
   )
 }
 
-export default Cars
+export default CarsDetail

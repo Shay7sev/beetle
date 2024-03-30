@@ -1,12 +1,13 @@
 // import "server-only"
 
-export const locales = ["zh-Hans", "zh-Hant"] as const
+export const locales = ["zh-Hans", "zh-Hant", "en-US"] as const
 
-export const defaultLocale = "zh-Hans"
+export const defaultLocale = "en-US"
 
 const dictionaries = {
   "zh-Hant": () => import("./zh-Hant.json").then((module) => module.default),
   "zh-Hans": () => import("./zh-Hans.json").then((module) => module.default),
+  "en-US": () => import("./en-US.json").then((module) => module.default),
 }
 
 export type Locale = keyof typeof dictionaries

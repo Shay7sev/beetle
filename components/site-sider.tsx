@@ -18,6 +18,9 @@ import {
   Trash2,
   Users2,
 } from "lucide-react"
+import { Icons } from "./icons"
+import useDict from "@/hooks/useDict"
+import { useRouter } from "next/navigation"
 
 interface SiteSiderProps {
   defaultSize?: number
@@ -31,6 +34,8 @@ export function SiteSider({
   navCollapsedSize = 4,
 }: SiteSiderProps) {
   const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed)
+  const { dict } = useDict()
+  const router = useRouter()
 
   return (
     <ResizablePanel
@@ -60,7 +65,21 @@ export function SiteSider({
           "flex h-14 items-center justify-center",
           isCollapsed ? "" : "px-2"
         )}>
-        1
+        <div
+          className={cn(
+            "flex items-center gap-1 [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
+            "cursor-pointer",
+            isCollapsed &&
+              "flex h-9 w-9 shrink-0 items-center justify-center p-0"
+          )}
+          onClick={() => {
+            router.push("/")
+          }}>
+          <Icons.logo />
+          <span className={cn("font-bold", isCollapsed && "hidden")}>
+            {dict?.title.toUpperCase()}
+          </span>
+        </div>
       </div>
       <Separator />
       <Nav
@@ -70,7 +89,7 @@ export function SiteSider({
             title: "Inbox",
             label: "128",
             icon: Inbox,
-            variant: "default",
+            variant: "ghost",
           },
           {
             title: "Drafts",

@@ -76,7 +76,6 @@ export default function RootLayout({
                       <ScrollArea className="h-[calc(100vh-6rem)]">
                         {children}
                       </ScrollArea>
-                      {/* <main className="flex-1"></main> */}
                       <SiteFooter />
                     </div>
                   </div>

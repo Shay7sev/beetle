@@ -1,59 +1,61 @@
 "use client"
 
-import * as React from "react"
-import Link from "next/link"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "./ui/breadcrumb"
+import { SlashIcon } from "lucide-react"
 import { usePathname } from "next/navigation"
-
-import { cn } from "@/lib/utils"
+import { useMemo } from "react"
 
 export function MainNav() {
   const pathname = usePathname()
 
+  const pathList = useMemo(() => {
+    return pathname.split("/").filter(Boolean)
+  }, [pathname])
+
+  console.log(pathList)
+
   return (
     <div className="mr-4 hidden md:flex">
-      <Link href="/" className="mr-6 flex items-center space-x-2">
-        <span className="hidden font-bold sm:inline-block">{1}</span>
-      </Link>
-      <nav className="flex items-center gap-6 text-sm">
-        <Link
-          href="/docs"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname === "/docs" ? "text-foreground" : "text-foreground/60"
-          )}>
-          Docs
-        </Link>
-        <Link
-          href="/docs/components"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/docs/components")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}>
-          Components
-        </Link>
-        <Link
-          href="/themes"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/themes")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}>
-          Themes
-        </Link>
-        <Link
-          href="/examples"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/examples")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}>
-          Examples
-        </Link>
-      </nav>
+      <Breadcrumb>
+        <BreadcrumbList>
+          {pathList.map((path, index) => {
+            return [
+              <BreadcrumbSeparator
+                className={index === 0 ? "hidden" : ""}
+                key={path + "BreadcrumbSeparator"}>
+                <SlashIcon />
+              </BreadcrumbSeparator>,
+              <BreadcrumbItem key={path + "BreadcrumbItem"}>
+                <BreadcrumbLink href="/beetle">
+                  {path.toUpperCase()}
+                </BreadcrumbLink>
+              </BreadcrumbItem>,
+            ]
+          })}
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator>
+            <SlashIcon />
+          </BreadcrumbSeparator>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator>
+            <SlashIcon />
+          </BreadcrumbSeparator>
+          <BreadcrumbItem>
+            <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
     </div>
   )
 }

@@ -11,7 +11,7 @@ export interface ConfigProps {
 const initConfigInfo: ConfigProps = {
   theme: "zinc",
   radius: 0.5,
-  lang: "zh-Hans",
+  lang: "en-US",
 }
 
 export const useConfig = create(
@@ -21,7 +21,7 @@ export const useConfig = create(
       setTheme: (theme: string) => set({ theme: theme }),
       radius: 0.5,
       setRadius: (radius: number) => set({ radius: radius }),
-      lang: "zh-Hans",
+      lang: "en-US",
       setLang: (lang: Locale) => set({ lang: lang }),
       resetConfigInfo: () => set(initConfigInfo),
     }),
