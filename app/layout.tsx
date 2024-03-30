@@ -33,7 +33,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   const windowScene = useMemo(() => {
-    return window.innerWidth > 1024 ? "pc" : "phone"
+    if (typeof window !== "undefined") {
+      return window.innerWidth > 1024 ? "pc" : "phone"
+    } else {
+      return "pc"
+    }
   }, [])
 
   return (
