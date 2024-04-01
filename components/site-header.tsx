@@ -15,6 +15,7 @@ import { themes } from "@/themes"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import useDict from "@/hooks/useDict"
 import { Dictionary } from "@/dictionaries"
+import { CommandMenu } from "./command-menu"
 
 export function SiteHeader() {
   const { dict } = useDict()
@@ -51,7 +52,7 @@ export function SiteHeader() {
               </PopoverContent>
             </Popover>
             <div className="w-full flex-1 md:w-auto md:flex-none">
-              CommandMenu
+              <CommandMenu />
             </div>
             <ModeToggle />
           </div>
