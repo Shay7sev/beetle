@@ -2,5 +2,10 @@
   "title": "beetle-liker",
   "menu": {
     "cars": "cars"
+  },
+  "header": {
+    "customize": "Customize",
+    "customizeDesc": "Pick a style and color for your components.",
+    "customizeReset": "Reset"
   }
 }

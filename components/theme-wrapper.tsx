@@ -12,18 +12,14 @@ export function ThemeWrapper({
   children,
   className,
 }: ThemeWrapperProps) {
-  const config = useConfig.getState()
+  const { theme, radius } = useConfig()
 
   return (
     <div
-      className={cn(
-        `theme-${defaultTheme || config.theme}`,
-        "w-full",
-        className
-      )}
+      className={cn(`theme-${defaultTheme || theme}`, "w-full", className)}
       style={
         {
-          "--radius": `${defaultTheme ? 0.5 : config.radius}rem`,
+          "--radius": `${defaultTheme ? 0.5 : radius}rem`,
         } as React.CSSProperties
       }
       suppressHydrationWarning>

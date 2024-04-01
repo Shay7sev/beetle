@@ -6,5 +6,10 @@
   "pagination": {
     "prev": "上一頁",
     "next": "下一頁"
+  },
+  "header": {
+    "customize": "自定義",
+    "customizeDesc": "為你的組件選擇一個樣式和顏色。",
+    "customizeReset": "重置"
   }
 }

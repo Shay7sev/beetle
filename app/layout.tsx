@@ -56,25 +56,25 @@ export default function RootLayout({
           // defaultTheme="zinc"
           >
             <TooltipProvider delayDuration={0}>
-              <ResizablePanelGroup
-                direction="horizontal"
-                onLayout={(sizes: number[]) => {
-                  document.cookie = `react-resizable-panels:layout=${JSON.stringify(
-                    sizes
-                  )}`
-                }}
-                className="h-full max-h-screen items-stretch">
-                <SiteSider
-                  defaultSize={windowScene === "pc" ? 20 : 4}
-                  defaultCollapsed={windowScene === "pc" ? false : true}
-                  navCollapsedSize={4}></SiteSider>
-                <ResizableHandle withHandle className="hidden md:flex" />
-                <ResizablePanel
-                  defaultSize={80}
-                  minSize={30}
-                  className="overflow-auto">
-                  <div vaul-drawer-wrapper="">
-                    <div className="relative flex flex-col bg-background">
+              <div vaul-drawer-wrapper="">
+                <ResizablePanelGroup
+                  direction="horizontal"
+                  onLayout={(sizes: number[]) => {
+                    document.cookie = `react-resizable-panels:layout=${JSON.stringify(
+                      sizes
+                    )}`
+                  }}
+                  className="h-full max-h-screen items-stretch">
+                  <SiteSider
+                    defaultSize={windowScene === "pc" ? 20 : 4}
+                    defaultCollapsed={windowScene === "pc" ? false : true}
+                    navCollapsedSize={4}></SiteSider>
+                  <ResizableHandle withHandle className="hidden md:flex" />
+                  <ResizablePanel
+                    defaultSize={80}
+                    minSize={30}
+                    className="overflow-auto">
+                    <div className="flex flex-col bg-background">
                       <SiteHeader />
                       <Separator />
                       <ScrollArea className="h-[calc(100vh-6rem)]">
@@ -82,9 +82,9 @@ export default function RootLayout({
                       </ScrollArea>
                       <SiteFooter />
                     </div>
-                  </div>
-                </ResizablePanel>
-              </ResizablePanelGroup>
+                  </ResizablePanel>
+                </ResizablePanelGroup>
+              </div>
             </TooltipProvider>
           </ThemeWrapper>
           <TailwindIndicator />
